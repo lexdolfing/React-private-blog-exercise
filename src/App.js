@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import {Route, Routes} from 'react-router-dom'
+import {Navigate, Route, Routes} from 'react-router-dom'
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import BlogpostsOverview from "./pages/blogpostsOverview/BlogpostsOverview";
 import Blogpost from "./pages/blogpost/Blogpost";
 import Navigation from "./components/navigation/Navigation";
+import {logDOM} from "@testing-library/react";
 
 
 function App() {
@@ -17,13 +18,11 @@ function App() {
           <Navigation></Navigation>
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login"  element={<Login />}/>
-          <Route path="/blogposts" element={<BlogpostsOverview />}/>
-          <Route path ="/blogposts/:blogId" element={<Blogpost />}/>
-
-
+          <Route path="/login"  element={<Login toggleAuth={toggleIsAuthenticated} />}/>
+          <Route path="/blogposts" element={isAuthenticated ? <BlogpostsOverview /> : <Navigate  to="/" /> }/>
+          <Route path ="/blogposts/:blogId" element={isAuthenticated ? <Blogpost /> : <Navigate to="/login" />}/>
       </Routes>
-
+          {console.log(isAuthenticated)}
       </>
   );
 }
