@@ -15,10 +15,10 @@ function App() {
 
   return (
       <>
-          <Navigation></Navigation>
+          <Navigation isAuthent={isAuthenticated}></Navigation>
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login"  element={<Login toggleAuth={toggleIsAuthenticated} />}/>
+          <Route path="/login"  element={<Login toggleAuth={toggleIsAuthenticated} isAuth={isAuthenticated} />}/>
           <Route path="/blogposts" element={isAuthenticated ? <BlogpostsOverview /> : <Navigate  to="/" /> }/>
           <Route path ="/blogposts/:blogId" element={isAuthenticated ? <Blogpost /> : <Navigate to="/login" />}/>
       </Routes>

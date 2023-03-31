@@ -11,7 +11,7 @@ export default function BlogpostsOverview() {
             <ul>
                 {blogPosts.map((post) => {
                     return <li key={post.id}>
-                        <Link to={'/blogposts/{post.id}'}>{post.title}</Link>
+                        <Link to={`/blogposts/${post.id}`}>{post.title}</Link>
                     </li>
                 } )}
             </ul>
